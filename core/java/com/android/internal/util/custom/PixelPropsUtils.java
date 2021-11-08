@@ -31,38 +31,29 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChange;
 
     private static final String[] packagesToChange = {
-            "com.android.vending",
-            "com.breel.wallpapers20",
-            "com.google.android.configupdater",
-            "com.google.android.apps.customization.pixel",
-            "com.google.android.apps.fitness",
-            "com.google.android.apps.gcs",
-            "com.google.android.apps.maps",
-            "com.google.android.apps.messaging",
-            "com.google.android.apps.nexuslauncher",
+            "com.google.android.ext.services",
             "com.google.android.apps.pixelmigrate",
-            "com.google.android.apps.recorder",
             "com.google.android.apps.safetyhub",
-            "com.google.android.apps.subscriptions.red",
-            "com.google.android.apps.tachyon",
-            "com.google.android.apps.turbo",
-            "com.google.android.apps.turboadapter",
-            "com.google.android.apps.wallpaper",
-            "com.google.android.apps.wallpaper.pixel",
-            "com.google.android.apps.wellbeing",
             "com.google.android.as",
             "com.google.android.dialer",
-            "com.google.android.ext.services",
-            "com.google.android.gms",
-            "com.google.android.gms.location.history",
-            "com.google.android.gsf",
-            "com.google.android.inputmethod.latin",
-            "com.google.android.soundpicker",
             "com.google.intelligence.sense",
-            "com.google.pixel.dynamicwallpapers",
-            "com.google.pixel.livewallpaper",
+            "com.android.vending",
+            "com.google.android.apps.gcs",
+            "com.google.android.apps.turbo",
+            "com.google.android.apps.wellbeing",
+            "com.google.android.configupdater",
+            "com.google.android.gms",
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.settings.intelligence",
+            "com.google.android.setupwizard",
+            "com.google.android.apps.nexuslauncher",
+            "com.google.android.gsf",
+            "com.google.android.apps.wallpaper",
+            "com.google.android.onetimeinitializer",
+            "com.google.android.pixel.setupwizard",
+            "com.google.android.apps.messaging",
             "com.google.android.apps.photos",
-            "com.google.android.googlequicksearchbox"
+            "com.google.android.apps.maps"
     };
 
     static {
@@ -72,7 +63,6 @@ public class PixelPropsUtils {
         propsToChange.put("DEVICE", "redfin");
         propsToChange.put("PRODUCT", "redfin");
         propsToChange.put("MODEL", "Pixel 5");
-        propsToChange.put("FINGERPRINT", "google/redfin/redfin:12/SPB5.210812.002/7671067:user/release-keys");
         propsToChange.put("IS_DEBUGGABLE", false);
         propsToChange.put("IS_ENG", false);
         propsToChange.put("IS_USERDEBUG", false);
@@ -91,9 +81,8 @@ public class PixelPropsUtils {
             for (Map.Entry<String, Object> prop : propsToChange.entrySet()) {
                 String key = prop.getKey();
                 Object value = prop.getValue();
-                // Don't set model if gms
                 if (packageName.equals("com.google.android.gms") && key.equals("MODEL")){
-                    continue;
+                    value = value + "\u200b";
                 }
                 setPropValue(key, value);
             }
